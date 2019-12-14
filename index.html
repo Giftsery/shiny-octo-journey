@@ -13,18 +13,27 @@
 
     <script>
         const API_publicKey = "FLWPUBK-77407a8e429f9dcb99c157c288b16272-X";
-    
+        
+        function uuidv4() {
+          return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+          });
+        }
+        
+        let transactionReference = uuidv4();
+        
         function payWithRave() {
             var x = getpaidSetup({
                 PBFPubKey: API_publicKey,
                 customer_email: "mugenyie@gmail.com",
-                amount: 2000,
+                amount: 500,
                 customer_phone: "256787744279",
                 currency: "UGX",
-                txref: "rave-123456",
+                txref: transactionReference,
                 meta: [{
-                    metaname: "flightID",
-                    metavalue: "AP1234"
+                    metaname: "GiftseryMobileCheckout",
+                    metavalue: "shiny-octo-journey"
                 }],
                 onclose: function() {},
                 callback: function(response) {
