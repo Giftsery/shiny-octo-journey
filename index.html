@@ -44,6 +44,7 @@
                 }],
                 onclose: function() {
                     //close
+                    await fetch('http://local/close');
                 },
                 callback: function(response) {
                     var txref = response.tx.txRef; // collect txRef returned and pass to a 					server page to complete status check.
@@ -53,8 +54,10 @@
                         response.tx.chargeResponseCode == "0"
                     ) {
                         // redirect to a success page
+                        await fetch('http://local/success');
                     } else {
                         // redirect to a failure page.
+                        await fetch('http://local/failure');
                     }
     
                     x.close(); // use this to close the modal immediately after payment.
