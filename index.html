@@ -19,12 +19,7 @@
         const _amount = getAllUrlParams(url).amount;
         const _email = getAllUrlParams(url).email;
         const _phoneNumber = getAllUrlParams(url).phoneNumber;
-        const _transactionMessage = JSON.stringify(getAllUrlParams(url).transactionMessage);
-        
-        document.addEventListener("message", function(event) {
-            alert(event.data);
-        }, false);
-        
+        const _transactionMessage = getAllUrlParams(url).transactionMessage;
         
         function uuidv4() {
           return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
