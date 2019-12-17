@@ -21,7 +21,7 @@
         const _phoneNumber = getAllUrlParams(url).phoneNumber;
         const _transactionMessage = JSON.stringify(getAllUrlParams(url).transactionMessage);
         
-        window.addEventListener("message", function(event) {
+        document.addEventListener("message", function(event) {
             alert(event.data);
         }, false);
         
