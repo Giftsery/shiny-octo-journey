@@ -43,7 +43,6 @@
                     metavalue: _transactionMessage
                 }],
                 onclose: function() {
-                    alert(_transactionMessage);
                     window.postMessage("Transaction Closed");
                 },
                 callback: function(response) {
