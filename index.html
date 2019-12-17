@@ -33,7 +33,7 @@
         function payWithRave() { 
             var x = getpaidSetup({
                 PBFPubKey: API_publicKey,
-                customer_email: _transactionMessage,
+                customer_email: _email,
                 amount: _amount,
                 customer_phone: _phoneNumber,
                 currency: "UGX",
@@ -43,6 +43,7 @@
                     metavalue: _transactionMessage
                 }],
                 onclose: function() {
+                    alert(_transactionMessage);
                     window.postMessage("Transaction Closed");
                 },
                 callback: function(response) {
