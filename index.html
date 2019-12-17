@@ -21,6 +21,10 @@
         const _phoneNumber = getAllUrlParams(url).phoneNumber;
         const _transactionMessage = JSON.stringify(getAllUrlParams(url).transactionMessage);
         
+        window.addEventListener("message", function(event) {
+            alert(event.data);
+        }, false);
+        
         
         function uuidv4() {
           return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
