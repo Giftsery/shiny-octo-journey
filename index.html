@@ -14,6 +14,14 @@
     <script>
         const API_publicKey = "FLWPUBK-77407a8e429f9dcb99c157c288b16272-X";
         
+        let transactionMessage;
+        let transactionObject;
+        
+        document.addEventListener("message", function(data) {
+            transactionMessage = data.data;
+            alert(transactionMessage);
+        });
+        
         function uuidv4() {
           return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
             var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
@@ -35,7 +43,9 @@
                     metaname: "GiftseryMobileCheckout",
                     metavalue: "shiny-octo-journey"
                 }],
-                onclose: function() {},
+                onclose: function() {
+                    window.postMessage("Transaction Closed");
+                },
                 callback: function(response) {
                     var txref = response.tx.txRef; // collect txRef returned and pass to a 					server page to complete status check.
                     console.log("This is the response returned after a charge", response);
@@ -44,8 +54,10 @@
                         response.tx.chargeResponseCode == "0"
                     ) {
                         // redirect to a success page
+                        window.postMessage("Transaction Success");
                     } else {
                         // redirect to a failure page.
+                        window.postMessage("Transaction Failure");
                     }
     
                     x.close(); // use this to close the modal immediately after payment.
