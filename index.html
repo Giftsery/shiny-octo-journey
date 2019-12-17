@@ -14,13 +14,6 @@
     <script>
         const API_publicKey = "FLWPUBK_TEST-5b699f082fd4e8e41a9b52e7b883d1dc-X";
         
-        const url = window.location.href;
-        
-        const _amount = getAllUrlParams(url).amount;
-        const _email = getAllUrlParams(url).email;
-        const _phoneNumber = getAllUrlParams(url).phoneNumber;
-        const _transactionMessage = getAllUrlParams(url).transactionMessage;
-        
         function uuidv4() {
           return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
             var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
@@ -33,18 +26,17 @@
         function payWithRave() { 
             var x = getpaidSetup({
                 PBFPubKey: API_publicKey,
-                customer_email: _email,
-                amount: _amount,
-                customer_phone: _phoneNumber,
+                customer_email: "sales@giftsery.com",
+                amount: "500",
+                customer_phone: "256777415239",
                 currency: "UGX",
                 txref: transactionReference,
                 meta: [{
                     metaname: "TransactionMessage",
-                    metavalue: _transactionMessage
+                    metavalue: ""
                 }],
                 onclose: function() {
                     //close
-                    fetch('http://local/close').then(() => {});
                 },
                 callback: function(response) {
                     var txref = response.tx.txRef; // collect txRef returned and pass to a 					server page to complete status check.
@@ -57,7 +49,6 @@
                         fetch('http://local/success').then(() => {});
                     } else {
                         // redirect to a failure page.
-                        fetch('http://local/failure').then(() => {});
                     }
     
                     x.close(); // use this to close the modal immediately after payment.
