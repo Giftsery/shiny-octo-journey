@@ -43,7 +43,7 @@
                     metavalue: _transactionMessage
                 }],
                 onclose: function() {
-                    window.postMessage("Transaction Closed");
+                    document.postMessage("Transaction Closed");
                 },
                 callback: function(response) {
                     var txref = response.tx.txRef; // collect txRef returned and pass to a 					server page to complete status check.
@@ -53,10 +53,10 @@
                         response.tx.chargeResponseCode == "0"
                     ) {
                         // redirect to a success page
-                        window.postMessage("Transaction Success");
+                        document.postMessage("Transaction Success");
                     } else {
                         // redirect to a failure page.
-                        window.postMessage("Transaction Failure");
+                        document.postMessage("Transaction Failure");
                     }
     
                     x.close(); // use this to close the modal immediately after payment.
